@@ -1,9 +1,12 @@
-import { relative } from "path";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
 
 const buildEslintCommand = (filenames) =>
-  `next lint --fix --file ${filenames.map((f) => relative(process.cwd(), f)).join(" --file ")}`;
+  `next lint --fix --file ${filenames
+    .map((f) => path.relative(process.cwd(), f))
+    .join(" --file ")}`;
 
-export default {
+module.exports = {
   // Type check TypeScript files
   "**/*.(ts|tsx)": () => "yarn tsc",
 
