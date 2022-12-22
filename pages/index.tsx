@@ -1,7 +1,22 @@
+import { MagnifyingGlassIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
+import Footer from "components/Footer";
 import Header from "components/Header";
 import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useRef } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const search = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const term = searchInputRef?.current?.value;
+    if (!term) return;
+    router.push(`/search?term=${term}`);
+  };
+
   return (
     <>
       <Head>
@@ -11,6 +26,27 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <form className="mt-40 flex flex-col items-center">
+        <Image
+          alt="google-logo"
+          objectFit="cover"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png"
+          width={300}
+          height={100}
+        />
+        <div className="mx-auto mt-5 flex w-full max-w-[90%] items-center rounded-full border border-gray-200 px-5 py-3 focus-within:shadow-lg hover:shadow-lg sm:max-w-xl lg:max-w-2xl">
+          <MagnifyingGlassIcon className="mr-3 h-5 text-gray-500" />
+          <input ref={searchInputRef} type="text" className="flex-grow focus:outline-none" />
+          <MicrophoneIcon className="h-5 text-gray-500" />
+        </div>
+        <div className="mt-8 flex w-[50%] flex-col justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4">
+          <button className="btn" onClick={search}>
+            Google Search
+          </button>
+          <button className="btn">{`I'm Feeling Lucky`}</button>
+        </div>
+        <Footer />
+      </form>
     </>
   );
 }
