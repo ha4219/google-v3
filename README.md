@@ -1,4 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#[Next.js Projects - 4 NextJS projects (Instagram, Google,...)
+] (https://www.udemy.com/course/react-js-tutorial/)
 
-## Getting Started
-123
+## Google v3
+
+
+### 소감
+
+그냥 tailwind 써본 기분
